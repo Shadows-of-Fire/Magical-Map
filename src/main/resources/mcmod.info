@@ -1,0 +1,21 @@
+[
+{
+  "modid": "structurefinder",
+  "name": "Structure Finder",
+  "description": "Finding Structures",
+  "version": "1.0.0",
+  "mcversion": "1.11.2",
+  "url": "",
+  "updateUrl": "",
+  "authors": [
+    "Shadows_of_Fire"
+  ],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
