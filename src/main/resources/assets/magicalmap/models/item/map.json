@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "items/map_empty"
+    "layer0": "magicalmap:items/magic_map"
   }
 }

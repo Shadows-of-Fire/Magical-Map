@@ -10,7 +10,7 @@ public class RecipeRegistry {
 
 	public static void init() {
 
-		GameRegistry.addShapedRecipe(new ItemStack(ModRegistry.map), "PFP", "LML", "PEP", 'P', Items.PRISMARINE_SHARD, 'F', Items.RABBIT_FOOT, 'M', Items.MAP, 'L', new ItemStack(Items.DYE, 1, 4), 'E', Items.ENDER_EYE);
+		GameRegistry.addShapedRecipe(new ItemStack(ModRegistry.map), "PEP", "PAP", "PBP", 'P', Items.PAPER, 'E', Items.EMERALD, 'A', Items.ENDER_EYE, 'B', Items.ENCHANTED_BOOK);
 		
 	}
 

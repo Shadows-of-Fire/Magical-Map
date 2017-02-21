@@ -9,6 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagLong;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -23,14 +24,14 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import shadows.map.core.ModRegistry;
-import shadows.map.core.StructureFinder;
+import shadows.map.core.MagicalMap;
 import shadows.map.util.WorldMappedData;
 
 public class ItemMap extends Item{
 	
 	public ItemMap(String name) {
 		setRegistryName(name);
-		setUnlocalizedName(StructureFinder.MODID + "." + name);
+		setUnlocalizedName(MagicalMap.MODID + "." + name);
 		setCreativeTab(Items.MAP.getCreativeTab());
 		setMaxStackSize(1);
 		GameRegistry.register(this);
@@ -103,7 +104,9 @@ public class ItemMap extends Item{
 		String newDesc = "Location: (" + coords.getX() + "," + coords.getY() + "," + coords.getZ() + ")";
 		player.sendMessage(new TextComponentString("Found structure \"" + structure + "\" at " + newDesc));
 		NBTTagString tag = new NBTTagString(newDesc);
+		NBTTagLong pos = new NBTTagLong(coords.toLong());
 		stack.setTagInfo("structurePos", tag);
+		stack.setTagInfo("structurePos2", pos);
 		ItemStack stack2 = new ItemStack(ModRegistry.usedMap);
 		stack2.setTagCompound(stack.getTagCompound());
 		return stack2;

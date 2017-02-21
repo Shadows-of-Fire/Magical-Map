@@ -1,8 +1,8 @@
 [
 {
-  "modid": "structurefinder",
-  "name": "Structure Finder",
-  "description": "Finding Structures",
+  "modid": "magicalmap",
+  "name": "Magical Map",
+  "description": "A map to find structures",
   "version": "1.0.0",
   "mcversion": "1.11.2",
   "url": "",

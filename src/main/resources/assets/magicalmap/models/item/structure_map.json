@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "structurefinder:items/map_filled"
+    "layer0": "magicalmap:items/magic_map"
   }
 }
