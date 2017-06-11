@@ -2,9 +2,12 @@ package shadows.map.common;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -31,7 +34,7 @@ public class ItemMap extends Item {
 	public ItemMap(String name) {
 		setRegistryName(name);
 		setUnlocalizedName(MagicalMap.MODID + "." + name);
-		setCreativeTab(Items.MAP.getCreativeTab());
+		setCreativeTab(CreativeTabs.MISC);
 		setMaxStackSize(1);
 		GameRegistry.register(this);
 	}
@@ -132,7 +135,7 @@ public class ItemMap extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced) {
+	public void addInformation(ItemStack stack, @Nullable World player, List<String> list, ITooltipFlag advanced) {
 		list.add("Name me!");
 		list.add("Valid structures are: Temple; Mineshaft; Village; Monument; Mansion; Stronghold; End City; Fortress");
 	}
@@ -144,12 +147,9 @@ public class ItemMap extends Item {
 
 	public void addPosToMapped(BlockPos pos, World world, EntityPlayer player) {
 		WorldMappedData data = WorldMappedData.get(world);
-		NBTTagCompound nbt = data.getData();
-
-		nbt.setString(EntityPlayer.getUUID(player.getGameProfile()).toString() + pos.toString(), pos.toString());
-
+		data.getData().setString(EntityPlayer.getUUID(player.getGameProfile()).toString() + pos.toString(),
+				pos.toString());
 		data.markDirty();
-
 		world.getPerWorldStorage().setData("MappedStructures", data);
 	}
 

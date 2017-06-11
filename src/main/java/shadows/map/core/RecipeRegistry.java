@@ -1,23 +1,18 @@
 package shadows.map.core;
 
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraft.item.Item;
+import shadows.map.util.RecipeHelper;
 
 public class RecipeRegistry {
 
 	public static void init() {
+		Item P = Items.PAPER;
+		Item E = Items.EMERALD;
+		Item A = Items.ENDER_EYE;
+		Item B = Items.ENCHANTED_BOOK;
 
-		GameRegistry.addShapedRecipe(new ItemStack(ModRegistry.map), "PEP", "PAP", "PBP", 'P', Items.PAPER, 'E',
-				Items.EMERALD, 'A', Items.ENDER_EYE, 'B', Items.ENCHANTED_BOOK);
+		RecipeHelper.addShaped(ModRegistry.map, 3, 3, new Object[] { P, E, P, P, A, P, P, B, P });
 	}
 
 }
-
-/*
- * GameRegistry.addShapelessRecipe(new ItemStack(ModRegistry.itemseed, 2),
- * ModRegistry.itemessence, Items.APPLE, Items.WHEAT_SEEDS);
- * GameRegistry.addShapedRecipe(new ItemStack(ModRegistry.soilcreator), " L ",
- * "FSF", " L ", 'F', ModRegistry.itemseed, 'L', Items.EGG, 'S', Blocks.DIRT);
- * 
- */
