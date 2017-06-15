@@ -3,8 +3,8 @@
   "modid": "magicalmap",
   "name": "Magical Map",
   "description": "A map to find structures",
-  "version": "1.0.0",
-  "mcversion": "1.11.2",
+  "version": "2.1.0",
+  "mcversion": "1.12",
   "url": "",
   "updateUrl": "",
   "authors": [
