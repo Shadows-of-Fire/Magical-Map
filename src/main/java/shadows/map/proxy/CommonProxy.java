@@ -8,7 +8,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import shadows.map.core.ConfigFile;
 import shadows.map.core.ModRegistry;
-import shadows.map.core.RecipeRegistry;
 import shadows.map.util.Events;
 
 public class CommonProxy {
@@ -19,8 +18,7 @@ public class CommonProxy {
 	public void preInit(FMLPreInitializationEvent e) {
 		config = new Configuration(e.getSuggestedConfigurationFile());
 		ConfigFile.syncConfig();
-		ModRegistry.init();
-		RecipeRegistry.init();
+		MinecraftForge.EVENT_BUS.register(new ModRegistry());
 	}
 
 	public void init(FMLInitializationEvent e) {

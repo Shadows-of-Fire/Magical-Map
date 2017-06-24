@@ -22,7 +22,6 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import shadows.map.core.MagicalMap;
@@ -31,12 +30,11 @@ import shadows.map.util.WorldMappedData;
 
 public class ItemMap extends Item {
 
-	public ItemMap(String name) {
-		setRegistryName(name);
-		setUnlocalizedName(MagicalMap.MODID + "." + name);
+	public ItemMap() {
+		setRegistryName("map");
+		setUnlocalizedName(MagicalMap.MODID + "." + "map");
 		setCreativeTab(CreativeTabs.MISC);
 		setMaxStackSize(1);
-		GameRegistry.register(this);
 	}
 
 	@Override
@@ -128,7 +126,7 @@ public class ItemMap extends Item {
 		NBTTagLong pos = new NBTTagLong(coords.toLong());
 		stack.setTagInfo("structurePos", tag);
 		stack.setTagInfo("structurePos2", pos);
-		ItemStack stack2 = new ItemStack(ModRegistry.usedMap);
+		ItemStack stack2 = new ItemStack(ModRegistry.USEDMAP);
 		stack2.setTagCompound(stack.getTagCompound());
 		return stack2;
 	}

@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 
-version = "1.12-2.1.0"
+version = "1.12-2.2.0"
 group= "shadows.map" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Magical Map"
 
@@ -20,9 +20,9 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12-14.21.0.2327"
+    version = "1.12-14.21.0.2348"
     runDir = "run"
-    mappings = "snapshot_20170614"
+    mappings = "snapshot_20170623"
 }
 
 dependencies {

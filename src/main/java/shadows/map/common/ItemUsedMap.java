@@ -17,18 +17,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import shadows.map.core.MagicalMap;
 
 public class ItemUsedMap extends Item {
 
-	public ItemUsedMap(String name) {
-		setRegistryName(name);
-		setUnlocalizedName(MagicalMap.MODID + "." + name);
+	public ItemUsedMap() {
+		setRegistryName("structure_map");
+		setUnlocalizedName(MagicalMap.MODID + "." + "structure_map");
 		setMaxStackSize(1);
-		GameRegistry.register(this);
 	}
 
 	@Override

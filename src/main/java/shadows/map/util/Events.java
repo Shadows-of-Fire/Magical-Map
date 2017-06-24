@@ -10,9 +10,9 @@ public class Events {
 
 	@SubscribeEvent
 	public void mapRepair(AnvilUpdateEvent event) {
-		if (event.getLeft().getItem() == ModRegistry.usedMap && event.getRight().getItem() == Items.ENDER_EYE) {
+		if (event.getLeft().getItem() == ModRegistry.USEDMAP && event.getRight().getItem() == Items.ENDER_EYE) {
 			event.setCost(1);
-			event.setOutput(new ItemStack(ModRegistry.map));
+			event.setOutput(new ItemStack(ModRegistry.MAP));
 			event.setMaterialCost(1);
 		}
 	}
