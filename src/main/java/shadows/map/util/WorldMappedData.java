@@ -29,8 +29,6 @@ public class WorldMappedData extends WorldSavedData {
 	}
 
 	public static WorldMappedData get(World world) {
-		// The IS_GLOBAL constant is there for clarity, and should be simplified
-		// into the right branch.
 		MapStorage storage = world.getPerWorldStorage();
 		WorldMappedData instance = (WorldMappedData) storage.getOrLoadData(WorldMappedData.class, "MappedStructures");
 
