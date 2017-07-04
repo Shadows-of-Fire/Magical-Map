@@ -162,7 +162,7 @@ public class RecipeHelper {
 		addShaped(group, new ItemStack(output), width, height, input);
 	}
 
-	public static ShapedRecipes genShaped(ItemStack output, int l, int w, Object[] input) {
+	public static ShapedRecipes genShaped(ItemStack output, int l, int w, Object... input) {
 		if (input[0] instanceof Object[])
 			input = (Object[]) input[0];
 		if (l * w != input.length)
@@ -187,7 +187,7 @@ public class RecipeHelper {
 		return new ShapedRecipes(MODID + ":" + j, l, w, inputL, output);
 	}
 
-	public static ShapedRecipes genShaped(String group, ItemStack output, int l, int w, Object[] input) {
+	public static ShapedRecipes genShaped(String group, ItemStack output, int l, int w, Object... input) {
 		if (input[0] instanceof List)
 			input = ((List<?>) input[0]).toArray();
 		else if (input[0] instanceof Object[])
@@ -214,7 +214,7 @@ public class RecipeHelper {
 		return new ShapedRecipes(group, l, w, inputL, output);
 	}
 
-	public static NonNullList<Ingredient> createInput(Object[] input) {
+	public static NonNullList<Ingredient> createInput(Object... input) {
 		if (input[0] instanceof List)
 			input = ((List<?>) input[0]).toArray();
 		else if (input[0] instanceof Object[])
