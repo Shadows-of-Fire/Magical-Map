@@ -38,8 +38,7 @@ public class ItemMap extends Item {
 	}
 
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing,
-			float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		return EnumActionResult.PASS;
 	}
 
@@ -52,16 +51,14 @@ public class ItemMap extends Item {
 				player.setHeldItem(hand, mapStack(structure, world, stack, player));
 				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 			} else if (structure.isEmpty())
-				player.sendMessage(new TextComponentString(
-						"\"" + player.getHeldItem(hand).getDisplayName() + "\" is an invalid structure!"));
+				player.sendMessage(new TextComponentString("\"" + player.getHeldItem(hand).getDisplayName() + "\" is an invalid structure!"));
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItem(hand));
 	}
 
 	private boolean hasUnmappedStructureNearby(String structure, World world, ItemStack stack, EntityPlayer player) {
 		BlockPos pos = world.findNearestStructure(structure, player.getPosition(), true);
-		if (pos == null)
-			player.sendMessage(new TextComponentString("Structure \"" + structure + "\" not found!"));
+		if (pos == null) player.sendMessage(new TextComponentString("Structure \"" + structure + "\" not found!"));
 		else if (this.isMapped(pos, world, player))
 			player.sendMessage(new TextComponentString("You have already mapped the nearest " + structure + "!"));
 		else if (pos != null && !isMapped(pos, world, player)) {
@@ -145,8 +142,7 @@ public class ItemMap extends Item {
 
 	public void addPosToMapped(BlockPos pos, World world, EntityPlayer player) {
 		WorldMappedData data = WorldMappedData.get(world);
-		data.getData().setString(EntityPlayer.getUUID(player.getGameProfile()).toString() + pos.toString(),
-				pos.toString());
+		data.getData().setString(EntityPlayer.getUUID(player.getGameProfile()).toString() + pos.toString(), pos.toString());
 		data.markDirty();
 		world.getPerWorldStorage().setData("MappedStructures", data);
 	}
@@ -155,13 +151,10 @@ public class ItemMap extends Item {
 		WorldMappedData data = WorldMappedData.get(world);
 		NBTTagCompound nbt = data.getData();
 
-		if (nbt.hasNoTags())
-			return false;
-		else if (nbt.getString(EntityPlayer.getUUID(player.getGameProfile()).toString() + pos.toString())
-				.equals(pos.toString()))
+		if (nbt.hasNoTags()) return false;
+		else if (nbt.getString(EntityPlayer.getUUID(player.getGameProfile()).toString() + pos.toString()).equals(pos.toString()))
 			return true;
-		else
-			return false;
+		else return false;
 	}
 
 }

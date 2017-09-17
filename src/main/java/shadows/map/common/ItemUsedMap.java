@@ -41,15 +41,13 @@ public class ItemUsedMap extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack stack = player.getHeldItem(hand);
-		if (!world.isRemote && stack.hasTagCompound() && stack.getTagCompound().hasKey("structurePos2")
-				&& stack.getTagCompound().hasKey("structurePos")) {
+		if (!world.isRemote && stack.hasTagCompound() && stack.getTagCompound().hasKey("structurePos2") && stack.getTagCompound().hasKey("structurePos")) {
 			BlockPos pos = BlockPos.fromLong(stack.getTagCompound().getLong("structurePos2"));
 			BlockPos playerpos = player.getPosition();
 			double distance = get2DDistanceFromPos(playerpos, pos, world);
 			int dist = (int) distance;
 			String message = "The structure is " + dist + " blocks away.";
-			if (dist <= 30)
-				message = "You are at the structure.";
+			if (dist <= 30) message = "You are at the structure.";
 			player.sendStatusMessage(new TextComponentString(message), false);
 			if (dist > 30) {
 				String message2 = "Proceed " + getFacing(playerpos, pos).getName() + ".";
