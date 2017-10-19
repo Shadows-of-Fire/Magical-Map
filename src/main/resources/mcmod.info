@@ -1,21 +1,14 @@
-[
-{
-  "modid": "magicalmap",
-  "name": "Magical Map",
-  "description": "A map to find structures",
-  "version": "2.1.0",
-  "mcversion": "1.12",
-  "url": "",
-  "updateUrl": "",
-  "authors": [
-    "Shadows_of_Fire"
-  ],
-  "credits": "",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"",
-  "dependencies": [
-  ]
-}
-]
+[{
+	"modid": "magicalmap",
+	"name": "Magical Map",
+	"description": "A map to find structures",
+	"version": "${version}",
+	"mcversion": "${mcversion}",
+	"url": "",
+	"updateUrl": "",
+	"authorList": ["Shadows_of_Fire"],
+	"credits": "InsomniaKitten",
+	"logoFile": "",
+	"screenshots": [],
+	"dependencies": []
+}]
