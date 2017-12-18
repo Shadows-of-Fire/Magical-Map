@@ -2,39 +2,35 @@ package shadows.map.core;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.AnvilUpdateEvent;
+import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.registries.IForgeRegistry;
+import shadows.map.MagicalMap;
 import shadows.map.common.ItemMap;
 import shadows.map.common.ItemUsedMap;
-import shadows.map.util.RecipeHelper;
 
 public class ModRegistry {
 	public static final ItemMap MAP = new ItemMap();
 	public static final ItemUsedMap USEDMAP = new ItemUsedMap();
 
-	public static void initRecipes() {
-		Item P = Items.PAPER;
-		Item E = Items.EMERALD;
-		Item A = Items.ENDER_EYE;
-		Item B = Items.ENCHANTED_BOOK;
-
-		RecipeHelper.addShaped(ModRegistry.MAP, 3, 3, P, E, P, P, A, P, P, B, P);
+	@SubscribeEvent
+	public void items(Register<Item> e) {
+		e.getRegistry().registerAll(MAP, USEDMAP);
 	}
 
 	@SubscribeEvent
-	public void onItemRegistry(RegistryEvent.Register<Item> event) {
-		IForgeRegistry<Item> reg = event.getRegistry();
-		reg.registerAll(MAP, USEDMAP);
+	public void recipes(Register<IRecipe> e) {
+		e.getRegistry().register(MagicalMap.HELPER.genShaped(new ItemStack(ModRegistry.MAP), 3, 3, Items.PAPER, Items.EMERALD, Items.PAPER, Items.PAPER, Items.ENDER_EYE, Items.PAPER, Items.PAPER, Items.ENCHANTED_BOOK, Items.PAPER).setRegistryName(MagicalMap.MODID, "map_recipe"));
 	}
 
 	@SubscribeEvent
-	public void onRecipeRegistry(RegistryEvent.Register<IRecipe> event) {
-		initRecipes();
-		IForgeRegistry<IRecipe> reg = event.getRegistry();
-		for (IRecipe rec : RecipeHelper.recipeList) {
-			reg.register(rec);
+	public void mapRepair(AnvilUpdateEvent event) {
+		if (event.getLeft().getItem() == ModRegistry.USEDMAP && event.getRight().getItem() == Items.ENDER_EYE) {
+			event.setCost(1);
+			event.setOutput(new ItemStack(ModRegistry.MAP));
+			event.setMaterialCost(1);
 		}
 	}
 

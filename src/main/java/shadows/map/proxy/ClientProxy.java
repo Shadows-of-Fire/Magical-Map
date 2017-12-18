@@ -9,13 +9,12 @@ import shadows.map.core.ModRegistry;
 public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit(FMLPreInitializationEvent e) {
-		super.preInit(e);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@SubscribeEvent
-	public void onModelRegistry(ModelRegistryEvent event) {
-		ModRegistry.USEDMAP.initModel();
-		ModRegistry.MAP.initModel();
+	public void onModelRegistry(ModelRegistryEvent e) {
+		ModRegistry.USEDMAP.initModels(e);
+		ModRegistry.MAP.initModels(e);
 	}
 }

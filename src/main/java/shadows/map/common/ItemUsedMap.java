@@ -4,10 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -16,16 +14,16 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import shadows.map.core.MagicalMap;
+import shadows.map.MagicalMap;
+import shadows.placebo.item.base.ItemBase;
 
-public class ItemUsedMap extends Item {
+public class ItemUsedMap extends ItemBase {
 
 	public ItemUsedMap() {
-		setRegistryName("structure_map");
-		setUnlocalizedName(MagicalMap.MODID + "." + "structure_map");
+		super("structure_map", MagicalMap.INFO);
+		setCreativeTab(null);
 		setMaxStackSize(1);
 	}
 
@@ -55,10 +53,10 @@ public class ItemUsedMap extends Item {
 			}
 		}
 
-		return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItem(hand));
+		return new ActionResult<>(EnumActionResult.FAIL, player.getHeldItem(hand));
 	}
 
-	public double get2DDistanceFromPos(BlockPos origin, BlockPos destination, World world) {
+	private static double get2DDistanceFromPos(BlockPos origin, BlockPos destination, World world) {
 		int x = origin.getX();
 		int z = origin.getZ();
 		int x1 = destination.getX();
@@ -67,15 +65,10 @@ public class ItemUsedMap extends Item {
 		return Math.sqrt(Math.pow(x1 - x, 2) + Math.pow(z1 - z, 2));
 	}
 
-	public EnumFacing getFacing(BlockPos player, BlockPos dest) {
+	private static EnumFacing getFacing(BlockPos player, BlockPos dest) {
 		float xDist = dest.getX() - player.getX();
 		float zDist = dest.getZ() - player.getZ();
 		return EnumFacing.getFacingFromVector(xDist, 0.0F, zDist);
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void initModel() {
-		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
 	}
 
 	@Override
