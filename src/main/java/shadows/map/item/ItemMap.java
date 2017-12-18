@@ -1,4 +1,4 @@
-package shadows.map.common;
+package shadows.map.item;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import shadows.map.MagicalMap;
-import shadows.map.core.ModRegistry;
+import shadows.map.init.ModRegistry;
 import shadows.map.util.WorldMappedData;
 import shadows.placebo.item.base.ItemBase;
 

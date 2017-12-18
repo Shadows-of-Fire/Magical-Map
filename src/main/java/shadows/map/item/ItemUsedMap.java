@@ -1,4 +1,4 @@
-package shadows.map.common;
+package shadows.map.item;
 
 import java.util.List;
 

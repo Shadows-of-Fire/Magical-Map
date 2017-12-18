@@ -1,4 +1,4 @@
-package shadows.map.core;
+package shadows.map.init;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -8,8 +8,8 @@ import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import shadows.map.MagicalMap;
-import shadows.map.common.ItemMap;
-import shadows.map.common.ItemUsedMap;
+import shadows.map.item.ItemMap;
+import shadows.map.item.ItemUsedMap;
 
 public class ModRegistry {
 	public static final ItemMap MAP = new ItemMap();

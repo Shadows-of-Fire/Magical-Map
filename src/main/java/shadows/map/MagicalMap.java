@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import shadows.map.core.ModRegistry;
+import shadows.map.init.ModRegistry;
 import shadows.map.proxy.CommonProxy;
 import shadows.placebo.registry.RegistryInformation;
 import shadows.placebo.util.RecipeHelper;
