@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import shadows.map.MagicalMap;
-import shadows.placebo.item.base.ItemBase;
+import shadows.placebo.item.ItemBase;
 
 public class ItemUsedMap extends ItemBase {
 

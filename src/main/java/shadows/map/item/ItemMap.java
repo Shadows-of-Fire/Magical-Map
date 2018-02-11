@@ -23,7 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import shadows.map.MagicalMap;
 import shadows.map.init.ModRegistry;
 import shadows.map.util.WorldMappedData;
-import shadows.placebo.item.base.ItemBase;
+import shadows.placebo.item.ItemBase;
 
 public class ItemMap extends ItemBase {
 
