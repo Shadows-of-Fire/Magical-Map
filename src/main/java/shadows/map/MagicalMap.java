@@ -11,7 +11,7 @@ import shadows.map.proxy.CommonProxy;
 import shadows.placebo.registry.RegistryInformation;
 import shadows.placebo.util.RecipeHelper;
 
-@Mod(modid = MagicalMap.MODID, version = MagicalMap.VERSION, name = MagicalMap.MODNAME, dependencies = "required-after:placebo@[1.1.0,)")
+@Mod(modid = MagicalMap.MODID, version = MagicalMap.VERSION, name = MagicalMap.MODNAME, dependencies = "required-after:placebo@[1.2.0,)")
 public class MagicalMap {
 	public static final String MODID = "magicalmap";
 	public static final String MODNAME = "Magical Map";
