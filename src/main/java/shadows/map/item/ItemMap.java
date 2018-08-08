@@ -98,6 +98,9 @@ public class ItemMap extends ItemBase {
 		case ("netherfortress"):
 			structure = "Fortress";
 			break;
+		case ("lostmansion"):
+			structure = "LostMansion";
+			break;
 		}
 		return structure;
 	}
