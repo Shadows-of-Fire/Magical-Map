@@ -16,7 +16,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Loader;
@@ -28,6 +28,9 @@ import shadows.map.util.WorldMappedData;
 import shadows.placebo.item.ItemBase;
 
 public class ItemMap extends ItemBase {
+
+	public static final String POS_STRING = "structurePos";
+	public static final String POS_LONG = "structurePos2";
 
 	public ItemMap() {
 		super("map", MagicalMap.INFO);
@@ -46,16 +49,16 @@ public class ItemMap extends ItemBase {
 		if (!world.isRemote && !stack.isEmpty()) {
 			if (!structure.isEmpty() && this.hasUnmappedStructureNearby(structure, world, stack, player)) {
 				player.setHeldItem(hand, mapStack(structure, world, stack, player));
-				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
-			} else if (structure.isEmpty()) player.sendMessage(new TextComponentString("\"" + player.getHeldItem(hand).getDisplayName() + "\" is an invalid structure!"));
+				return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+			} else if (structure.isEmpty()) player.sendStatusMessage(new TextComponentTranslation("msg.magicalmap.invalid", player.getHeldItem(hand).getDisplayName()), true);
 		}
 		return new ActionResult<>(EnumActionResult.FAIL, player.getHeldItem(hand));
 	}
 
 	private boolean hasUnmappedStructureNearby(String structure, World world, ItemStack stack, EntityPlayer player) {
 		BlockPos pos = world.findNearestStructure(structure, player.getPosition(), true);
-		if (pos == null) player.sendMessage(new TextComponentString("Structure \"" + structure + "\" not found!"));
-		else if (isMapped(pos, world, player)) player.sendMessage(new TextComponentString("You have already mapped the nearest " + structure + "!"));
+		if (pos == null) player.sendStatusMessage(new TextComponentTranslation("msg.magicalmap.notfound", structure), true);
+		else if (isMapped(pos, world, player)) player.sendStatusMessage(new TextComponentTranslation("msg.magicalmap.mapped", structure), true);
 		else if (pos != null && !isMapped(pos, world, player)) {
 			addPosToMapped(pos, world, player);
 			return true;
@@ -109,17 +112,14 @@ public class ItemMap extends ItemBase {
 
 	private static ItemStack mapStack(String structure, World world, ItemStack stack, EntityPlayer player) {
 		BlockPos coords = world.findNearestStructure(structure, player.getPosition(), false);
-		String newName = TextFormatting.RESET + "Map to " + structure;
-		stack.setStackDisplayName(newName);
-		String newDesc = "Location: (" + coords.getX() + "," + coords.getY() + "," + coords.getZ() + ")";
-		player.sendMessage(new TextComponentString("Found structure \"" + structure + "\" at " + newDesc));
-		NBTTagString tag = new NBTTagString(newDesc);
-		NBTTagLong pos = new NBTTagLong(coords.toLong());
-		stack.setTagInfo("structurePos", tag);
-		stack.setTagInfo("structurePos2", pos);
-		ItemStack stack2 = new ItemStack(ModRegistry.USEDMAP);
-		stack2.setTagCompound(stack.getTagCompound());
-		return stack2;
+		String pos = "(" + coords.getX() + ", " + coords.getY() + ", " + coords.getZ() + ")";
+		player.sendStatusMessage(new TextComponentTranslation("msg.magicalmap.found", structure, pos), true);
+
+		ItemStack newStack = new ItemStack(ModRegistry.USEDMAP);
+		newStack.setStackDisplayName(TextFormatting.RESET + "Map to " + structure);
+		newStack.setTagInfo(POS_STRING, new NBTTagString(pos));
+		newStack.setTagInfo(POS_LONG, new NBTTagLong(coords.toLong()));
+		return newStack;
 	}
 
 	@Override
