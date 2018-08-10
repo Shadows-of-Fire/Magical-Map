@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import shadows.map.MagicalMap;
@@ -123,8 +125,8 @@ public class ItemMap extends ItemBase {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World player, List<String> list, ITooltipFlag advanced) {
-		list.add("Name me!");
-		list.add("Valid structures are: Temple; Mineshaft; Village; Monument; Mansion; Stronghold; End City; Fortress");
+		list.add(I18n.format("desc.magicalmap.line1"));
+		list.add(I18n.format("desc.magicalmap.line2") + " Temple; Mineshaft; Village; Monument; Mansion; Stronghold; End City; Fortress" + (Loader.isModLoaded("lostcities") ? "; LostMansion" : ""));
 	}
 
 	private static void addPosToMapped(BlockPos pos, World world, EntityPlayer player) {
@@ -137,8 +139,7 @@ public class ItemMap extends ItemBase {
 	private static boolean isMapped(BlockPos pos, World world, EntityPlayer player) {
 		WorldMappedData data = WorldMappedData.get(world);
 		NBTTagCompound nbt = data.getData();
-
-		if (nbt.hasNoTags()) return false;
+		if (nbt.isEmpty()) return false;
 		else if (nbt.getString(EntityPlayer.getUUID(player.getGameProfile()).toString() + pos.toString()).equals(pos.toString())) return true;
 		else return false;
 	}

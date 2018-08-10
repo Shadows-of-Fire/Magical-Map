@@ -15,7 +15,7 @@ import shadows.placebo.util.RecipeHelper;
 public class MagicalMap {
 	public static final String MODID = "magicalmap";
 	public static final String MODNAME = "Magical Map";
-	public static final String VERSION = "3.2.0";
+	public static final String VERSION = "3.3.0";
 
 	@SidedProxy(clientSide = "shadows.map.proxy.ClientProxy", serverSide = "shadows.map.proxy.CommonProxy")
 	public static CommonProxy proxy;

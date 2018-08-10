@@ -1,3 +1,4 @@
 item.magicalmap.map.name=Magical Map
 item.magicalmap.structure_map.name=Magical Map (Used)
-item.magicalmap.test.name=Remote Interaction
+desc.magicalmap.line1=Name Me!
+desc.magicalmap.line2=Valid structures are:
