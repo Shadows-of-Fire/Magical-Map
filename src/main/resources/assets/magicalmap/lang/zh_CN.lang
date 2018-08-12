@@ -1,2 +1,15 @@
 item.magicalmap.map.name=魔法地图
-item.magicalmap.structure_map.name=魔法地图（以启用）
+item.magicalmap.structure_map.name=魔法地图（已启用）
+desc.magicalmap.line1=未命名！
+desc.magicalmap.line2=有效结构名称：
+desc.magicalmap.repair=将其置于铁砧并放入末影之眼以重置
+msg.magicalmap.invalid=%s 为无效结构！
+msg.magicalmap.notfound=未找到"%s"结构！
+msg.magicalmap.mapped=你之前已经绘制了一张%s结构的地图！
+msg.magicalmap.found=已发现"%s"结构，位于%s
+msg.magicalmap.dist=该结构距离你%s个方块远，位于%s方位。
+msg.magicalmap.here=你已经在该结构周围。
+dir.magicalmap.north=北
+dir.magicalmap.east=东
+dir.magicalmap.south=南
+dir.magicalmap.west=西
