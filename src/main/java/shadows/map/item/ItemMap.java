@@ -6,7 +6,9 @@ import javax.annotation.Nullable;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagLong;
@@ -22,19 +24,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import shadows.map.MagicalMap;
 import shadows.map.init.ModRegistry;
 import shadows.map.util.WorldMappedData;
-import shadows.placebo.item.ItemBase;
 
-public class ItemMap extends ItemBase {
+public class ItemMap extends Item {
 
 	public static final String POS_STRING = "structurePos";
 	public static final String POS_LONG = "structurePos2";
 
 	public ItemMap() {
-		super("map", MagicalMap.INFO);
 		setMaxStackSize(1);
+		setCreativeTab(CreativeTabs.MISC);
 	}
 
 	@Override
@@ -115,7 +115,7 @@ public class ItemMap extends ItemBase {
 		String pos = "(" + coords.getX() + ", " + coords.getY() + ", " + coords.getZ() + ")";
 		player.sendStatusMessage(new TextComponentTranslation("msg.magicalmap.found", structure, pos), true);
 
-		ItemStack newStack = new ItemStack(ModRegistry.USEDMAP);
+		ItemStack newStack = new ItemStack(ModRegistry.USED_MAP);
 		newStack.setStackDisplayName(TextFormatting.RESET + "Map to " + structure);
 		newStack.setTagInfo(POS_STRING, new NBTTagString(pos));
 		newStack.setTagInfo(POS_LONG, new NBTTagLong(coords.toLong()));

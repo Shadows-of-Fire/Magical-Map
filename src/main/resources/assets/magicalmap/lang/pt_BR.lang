@@ -1,5 +1,5 @@
 item.magicalmap.map.name=Mapa mágico
-item.magicalmap.structure_map.name=Mapa mágico (usado)
+item.magicalmap.used_map.name=Mapa mágico (usado)
 desc.magicalmap.line1=Me dê um nome!
 desc.magicalmap.line2=Estruturas válidas:
 desc.magicalmap.repair=Pode ser redefinido em uma bigorna com um olho de ender
